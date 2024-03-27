@@ -1,0 +1,36 @@
+{
+  "name": "supplystream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css",
+    "devcss": "postcss public/styles/tailwind.css -o public/styles/style.css -w",
+    "dev": " nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Prajwal-S-Venkatesh/SupplyTunes.git"
+  },
+  "author": "Prajwal-S-Venkateshmurthy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prajwal-S-Venkatesh/SupplyTunes/issues"
+  },
+  "homepage": "https://github.com/Prajwal-S-Venkatesh/SupplyTunes#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "express-partials": "^0.3.0",
+    "vimeo": "^2.3.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "dotenv": "^16.4.5",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.1"
+  }
+}

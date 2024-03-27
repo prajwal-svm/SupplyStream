@@ -1,0 +1,17 @@
+<div
+    class="flex bg-black flex-row justify-between items-start bg-black text-white py-4 p-4 bg-gradient-to-r bg-gradient-to-r from-black-blue-black">
+    <%- include('../partials/sidebar') %>
+
+        <main
+            class="container mx-auto bg-[#121212] p-4 rounded-lg max-w-[calc(100%-280px)] max-h-[98vh] overflow-y-auto">
+            <div class="flex flex-col justify-evenly">
+
+                <%- include('../partials/header') %>
+
+                    <%- include('../partials/categories') %>
+
+                        <%- include('../partials/channels') %>
+            </div>
+        </main>
+
+</div>

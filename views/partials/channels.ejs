@@ -1,0 +1,42 @@
+<section class="py-4">
+    <% categories.forEach((category)=> { %>
+        <div class="flex items-center justify-between" data-category-uri="<%= category.uri %>">
+            <div class="flex-col">
+                <h2 class="text-2xl ml-4 font-bold">
+                    <span class="text-[#2563eb] font-normal text-sm uppercase text-gray-300">
+                        #channels in</span>
+                    <%= category.name %>
+                        <hr
+                            class="w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 border-0 rounded-full">
+                </h2>
+            </div>
+            <div>
+                <button
+                    class="bg-[#2563eb] hover:bg-opacity-75 rounded-full p-2 focus:outline-none font-bold"
+                    id="scrollLeft-<%= category.uri %>">
+                    <!-- Left arrow icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button
+                    class="bg-[#2563eb] hover:bg-opacity-75 rounded-full p-2 focus:outline-none font-bold"
+                    id="scrollRight-<%= category.uri %>">
+                    <!-- Right arrow icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <br />
+        <div class="overflow-x-auto whitespace-nowrap scroll-smooth mx-4 channels-container mb-10"
+            data-channel-uri="<%= category.uri %>" id="scroller-<%= category.uri %>">
+            <div class="loader"></div>
+        </div>
+        <% }) %>
+</section>

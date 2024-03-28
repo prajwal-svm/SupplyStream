@@ -29,7 +29,7 @@
     <div class="overflow-x-auto whitespace-nowrap scroll-smooth mx-4" id="scroller">
         <% categories.forEach((category)=> { %>
             <div class="inline-block mx-2">
-                <div class="relative">
+                <a class="relative" href="<%= category.uri %>/channels">
                     <div class="category-image-wrapper">
                         <img src="<%= category.pictures.base_link %>" alt="<%= category.name %>"
                             class="w-48 h-48 object-cover rounded-full mb-1">
@@ -43,7 +43,7 @@
                             </svg>
                         </div>
                     </div>
-                </div>
+                </a>
                 <div class="bottom-0 left-0 right-0 font-bold bg-opacity-50 py-2 px-4 rounded-b-full">
                     <p class="text-white text-center truncate">
                         <%= category.name %>

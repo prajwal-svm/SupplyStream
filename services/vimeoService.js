@@ -1,3 +1,5 @@
+const { logToFile } = require('../utils/logger');
+
 const Vimeo = require('vimeo').Vimeo;
 
 class VimeoService {
@@ -29,7 +31,7 @@ class VimeoService {
         }
     }
 
-    async getCategoryChannels(categoryUri, page = 1, perPage = 10, sort = 'followers', direction = 'desc') {
+    async getCategoryChannels(categoryUri, page = 1, perPage = 8, sort = 'followers', direction = 'desc') {
         try {
             const response = await new Promise((resolve, reject) => {
                 this.client.request({
@@ -43,7 +45,11 @@ class VimeoService {
                     }
                 });
             });
-            return response.data;
+            // logToFile(response);
+            return {
+                channels: response.data,
+                paging: response.paging
+            };
         } catch (error) {
             throw new Error(`Failed to fetch category channels: ${error.message}`);
         }

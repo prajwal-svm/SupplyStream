@@ -1,0 +1,133 @@
+<div
+    class="flex bg-black flex-row justify-between items-start bg-black text-white py-4 p-4 bg-gradient-to-r bg-gradient-to-r from-black-blue-black">
+    <%- include('../partials/sidebar') %>
+
+        <main
+            class="container mx-auto bg-[#121212] p-4 rounded-lg max-w-[calc(100%-280px)] max-h-[98vh] overflow-y-auto">
+            <div class="flex flex-col justify-evenly">
+                <div class="container mx-auto px-4 py-8">
+                    <h1
+                        class="text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-red-800 to-pink-800 uppercase">
+                        Stream Studio
+                    </h1>
+
+                    <div class="bg-black rounded-3xl shadow-md p-8 flex flex-col align-center justify-center">
+                        <div id="dropzone"
+                            class="flex flex-col h-[500px] items-center mb-2 flex align-center justify-center scale-5 border-4 border-dashed border-gray-700 rounded-lg">
+                            <div class="flex items-center mb-8 flex align-center justify-center scale-5">
+                                <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-4 text-center">Drag and drop videos here to <%- type%>
+                            </h2>
+                            <p class="text-gray-400 text-center mb-10">or</p>
+                            <label for="fileInput"
+                                class="bg-blue-500 text-white px-4 py-2 rounded-3xl focus:outline-none cursor-pointer">
+                                Choose Files
+                            </label>
+                            <input id="fileInput" type="file" multiple class="hidden">
+                        </div>
+
+                        <div id="uploadedFiles" class="mt-8 hidden">
+                            <h3 class="text-xl font-bold mb-4">Selected Files:</h3>
+                            <ul id="fileList" class="space-y-2"></ul>
+                            <div class="flex justify-end">
+                                <button
+                                    class="bg-green-600 text-white px-4 py-2 rounded-3xl focus:outline-none mt-4">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+</div>
+
+<script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, unhighlight, false);
+    });
+
+    dropzone.addEventListener('drop', handleDrop, false);
+
+    fileInput.addEventListener('change', handleFileInput, false);
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropzone.classList.add('border-blue-500');
+    }
+
+    function unhighlight(e) {
+        dropzone.classList.remove('border-blue-500');
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+
+    function handleFileInput(e) {
+        const files = e.target.files;
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        ([...files]).forEach(uploadFile);
+    }
+
+    function uploadFile(file) {
+        console.log('Uploading file:', file.name);
+        displayUploadedFile(file);
+    }
+
+    function displayUploadedFile(file) {
+        uploadedFiles.classList.remove('hidden');
+        const fileList = document.getElementById('fileList');
+        const listItem = document.createElement('li');
+        listItem.className = 'flex items-center justify-between bg-gray-900 p-4 rounded';
+
+        const fileName = document.createElement('span');
+        fileName.textContent = file.name;
+        fileName.className = 'text-white';
+
+        const removeButton = document.createElement('button');
+        removeButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 hover:text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+        `;
+        removeButton.className = 'focus:outline-none';
+        removeButton.addEventListener('click', () => {
+            removeUploadedFile(file, listItem);
+        });
+
+        listItem.appendChild(fileName);
+        listItem.appendChild(removeButton);
+        fileList.appendChild(listItem);
+    }
+
+    function removeUploadedFile(file, listItem) {
+        listItem.remove();
+        if (fileList.children.length === 0) {
+            uploadedFiles.classList.add('hidden');
+        }
+    }
+</script>

@@ -16,11 +16,107 @@
     <div class="flex items-center space-x-4">
         <button
             class="px-4 py-2 font-semibold text-white bg-[#2563eb] rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-gray-900">
-            Log in
+            <a href="/login">Login</a>
         </button>
         <button
             class="px-4 py-2 font-semibold text-white bg-gray-800 rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2 focus:ring-offset-gray-900">
-            Sign up
+            <a href="/register">Register</a>
+        </button>
+
+        <button
+            class="px-4 py-2 font-semibold text-white bg-[#2563eb] rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-gray-900"
+            data-modal-target="iconModal">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0z"
+                    clip-rule="evenodd" />
+            </svg>
         </button>
     </div>
 </div>
+
+
+<div id="iconModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        <div
+            class="inline-block align-middle bg-black rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full p-6">
+            <div class="bg-black p-6 sm:p-6 sm:pb-4">
+                <h3 class="text-2xl leading-6 font-medium text-white text-center" id="modal-title">
+                    Welcome to SupplyStream!
+                </h3>
+                <br />
+                <div class="mt-2">
+                    <p class="text-l text-gray-500 text-center">
+                        The content displayed in the application is sourced from the Vimeo API, which is a third-party
+                        service. SupplyFrame, the developer of this application, does not have control over the content
+                        provided by the Vimeo API.
+                    </p>
+                    <p class="mt-2 text-lg text-gray-500 text-center">
+                        Please be aware that the content may include graphic or sensitive material. SupplyFrame and the
+                        author of this application are not responsible for the nature or accuracy of the content
+                        retrieved from the Vimeo API.
+                    </p>
+                    <p class="mt-2 text-lg text-gray-500 text-center">
+                        By using this application and accessing the content from the Vimeo API, you acknowledge that
+                        SupplyFrame and the application author are not liable for any issues or concerns arising from
+                        the third-party content.
+                    </p>
+                    <p class="mt-2 text-lg text-gray-500 text-center">
+                        If you have any questions or concerns regarding the content, please contact Vimeo directly or
+                        refer to their terms of service and content policies.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-black px-4 py-3 sm:px-6 sm:flex sm:flex-col items-center justify-center">
+                <button type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm"
+                    data-modal-close>
+                    Alright!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // JavaScript code to handle modal functionality
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-modal-close]');
+    const overlay = document.querySelector('.fixed.inset-0');
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modalId = button.getAttribute('data-modal-target');
+            const modal = document.getElementById(modalId);
+            openModal(modal);
+        });
+    });
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.fixed.z-10');
+            closeModal(modal);
+        });
+    });
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.fixed.z-10');
+        modals.forEach(modal => {
+            closeModal(modal);
+        });
+    });
+
+    function openModal(modal) {
+        if (modal === null) return;
+        modal.classList.remove('hidden');
+        modal.setAttribute('aria-modal', 'true');
+    }
+
+    function closeModal(modal) {
+        if (modal === null) return;
+        modal.classList.add('hidden');
+        modal.setAttribute('aria-modal', 'false');
+    }
+</script>

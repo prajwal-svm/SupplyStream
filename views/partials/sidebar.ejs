@@ -1,58 +1,62 @@
 <sidebar class="max-h-[98vh] h-[98vh] overflow-scroll">
     <div class="bg-[#121212] text-white p-4 rounded-lg w-[260px] mr-4 h-auto mb-4">
-        <div class="flex flex-row items-center justify-center">
-            <img src="/images/icons8-stream-96.png" alt="SupplyStream Logo" class="w-12 h-12 mr-2 mt-1">
+        <a class="flex flex-row items-center justify-center" href="/">
+            <img src="<%= baseUrl %>/images/icons8-stream-96.png" alt="SupplyStream Logo" class="w-12 h-12 mr-2 mt-1">
             <h1 class="text-2xl font-bold">SupplyStream</h1>
-        </div>
+        </a>
     </div>
 
     <div class="bg-[#121212] text-white p-4 rounded-lg w-[260px] mr-4 h-auto mb-4 pb-6">
         <h3 class="text-lg w-full font-bold text-gray-400 mb-2">STUDIO</h3>
         <div class="flex flex-col space-y-4 ml-4 mt-2">
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
+            <a class="flex items-center space-x-2 cursor-pointer hover:text-gray-300" href="/studio/upload">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="#ff4d6d">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                 </svg>
                 <span class="font-bold">Upload</span>
-            </div>
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
+            </a>
+            <a class="flex items-center space-x-2 cursor-pointer hover:text-gray-300" href="/studio/import">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="#ffbc42">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                 </svg>
                 <span class="font-bold">Import</span>
-            </div>
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
+            </a>
+            <a class="flex items-center space-x-2 cursor-pointer hover:text-gray-300" href="/studio/create">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="#80ed99">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
                 <span class="font-bold">Create</span>
-            </div>
-            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-300">
+            </a>
+            <a class="flex items-center space-x-2 cursor-pointer hover:text-gray-300" href="/studio/record">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="#00abe7">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                 </svg>
                 <span class="font-bold">Record</span>
-            </div>
+            </a>
         </div>
     </div>
 
-    <div class="bg-[#121212] text-white p-4 rounded-lg w-[260px] mr-4 h-auto mb-4">
-        <h3 class="text-lg w-full font-bold text-gray-400 mb-2">CATEGORIES</h3>
-        <ul class="text-sm text-gray-200 font-bold w-full ml-4">
-            <% categories.forEach((category)=> { %>
-                <li class="hover:text gray-400 cursor-pointer p-1 hover:text-gray-400 hover:cursor-pointer ">
-                    <%= category.name %>
-                </li>
-                <% }) %>
-        </ul>
-    </div>
+    <% if (categories.length> 0) { %>
+        <div class="bg-[#121212] text-white p-4 rounded-lg w-[260px] mr-4 h-auto mb-4">
+            <h3 class="text-lg w-full font-bold text-gray-400 mb-2">CATEGORIES</h3>
+            <ul class="text-sm text-gray-200 font-bold w-full ml-4">
+                <% categories.forEach((category)=> { %>
+                    <li class="hover:text-gray-400 cursor-pointer p-1">
+                        <a href="<%= category.uri %>/channels">
+                            <%= category.name %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+        <% } %>
 
 </sidebar>

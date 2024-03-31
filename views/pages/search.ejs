@@ -1,0 +1,87 @@
+<div
+    class="flex bg-black flex-row justify-between items-start bg-black text-white py-4 p-4 bg-gradient-to-r bg-gradient-to-r from-black-blue-black">
+    <%- include('../partials/sidebar') %>
+
+        <main
+            class="container mx-auto bg-[#121212] p-4 rounded-lg max-w-[calc(100%-280px)] max-h-[98vh] overflow-y-auto">
+            <div class="flex flex-col justify-evenly">
+                <%- include('../partials/header') %>
+                    <div class="container mx-auto py-8">
+                        <h1 class="text-3xl font-bold mb-8 text-white">
+                            Results for <span class="text-blue-500">"<%= query %>"</span>
+                        </h1>
+
+                        <% if (videos.length> 0) { %>
+                            <div class="mb-8">
+                                <div class="relative">
+                                    <img src="<%= videos[0].pictures.base_link %>" width="100%" height="400" />
+                                    <div
+                                        class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent rounded-b-xl">
+                                        <h2 class="text-2xl font-bold mb-2 text-white">
+                                            <%= videos[0].name %>
+                                        </h2>
+                                        <p class="text-gray-300 mb-4">
+                                            <%= videos[0].description %>
+                                        </p>
+                                        <a href="<%= videos[0].link %>" target="_blank"
+                                            class="text-blue-500 hover:underline">
+                                            Visit Channel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                    <% videos.slice(1).forEach(function(channel) { %>
+                                        <div
+                                            class="bg-black rounded-xl shadow-md transform transition duration-500 hover:scale-105">
+                                            <iframe
+                                                src="https://player.vimeo.com/video/<%= channel.uri.split('/')[2] %>"
+                                                width="100%" height="200" frameborder="0" allow="autoplay; fullscreen"
+                                                allowfullscreen></iframe>
+                                            <div class="px-6 py-4">
+                                                <h2
+                                                    class="text-xl font-bold mb-2 text-white overflow-hidden whitespace-nowrap text-ellipsis">
+                                                    <%= channel.name %>
+                                                </h2>
+                                                <p class="text-gray-300 mb-4 overflow-hidden h-12 text-ellipsis">
+                                                    <%= channel.description %>
+                                                </p>
+                                                <a href="<%= channel.link %>" target="_blank"
+                                                    class="text-blue-500 hover:underline">
+                                                    Visit Channel
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                </div>
+
+                                <div class="flex justify-center mt-8">
+                                    <% if (paging.previous) { %>
+                                        <a href="<%= paging.previous %>"
+                                            class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                        </a>
+                                        <% } %>
+                                            <% if (paging.next) { %>
+                                                <a href="<%= paging.next %>"
+                                                    class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </a>
+                                                <% } %>
+                                </div>
+
+                    </div>
+            </div>
+        </main>
+
+</div>

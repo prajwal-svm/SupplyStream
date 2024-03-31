@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs';
 
-function logToFile(data) {
+export const logToFile = (data) => {
     const jsonData = JSON.stringify(data, null, 2);
     const timestamp = new Date().toISOString();
     const logMessage = `"${timestamp}" - ${jsonData}\n`;
@@ -11,7 +11,3 @@ function logToFile(data) {
         }
     });
 }
-
-module.exports = {
-    logToFile
-};

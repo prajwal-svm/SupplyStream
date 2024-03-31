@@ -1,10 +1,9 @@
-const { logToFile } = require('../utils/logger');
-
-const Vimeo = require('vimeo').Vimeo;
+import { logToFile } from '../utils/logger.js';
+import Vimeo from 'vimeo';
 
 class VimeoService {
     constructor() {
-        this.client = new Vimeo(
+        this.client = new Vimeo.Vimeo(
             process.env.VIMEO_CLIENT_ID,
             process.env.VIMEO_ACCESS_TOKEN,
             process.env.VIMEO_CLIENT_SECRET
@@ -54,6 +53,33 @@ class VimeoService {
             throw new Error(`Failed to fetch category channels: ${error.message}`);
         }
     }
+
+    async search(query, page = 1, perPage = 8, sort = 'relevant', direction = 'desc') {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                this.client.request({
+                    method: 'GET',
+                    path: `/videos?page=${page}&per_page=${perPage}&query=${query}&sort=${sort}&direction=${direction}`
+                }, function (error, body) {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(body);
+                    }
+                });
+            });
+            logToFile(response);
+            return {
+                videos: response.data,
+                paging: response.paging
+            };
+        } catch (error) {
+            return {
+                videos: [],
+                paging: {}
+            };
+        }
+    }
 }
 
-module.exports = new VimeoService();
+export default new VimeoService();

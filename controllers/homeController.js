@@ -1,13 +1,16 @@
-const VimeoService = require('../services/vimeoService');
-const { logToFile } = require('../utils/logger');
+import VimeoService from '../services/vimeoService.js';
 
-exports.getCategories = async (req, res) => {
+const baseUrl = `http://localhost:${process.env.PORT}`;
+
+export const getCategories = async (req, res) => {
   try {
     const categories = await VimeoService.getCategories();
     res.render('pages/index', {
       layout: 'partials/layout',
       categories,
-      baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+      baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+      currentPage: 'home',
+      breadcrumb: null
     });
   } catch (error) {
     console.log("Error:", error);
@@ -15,11 +18,9 @@ exports.getCategories = async (req, res) => {
   }
 };
 
-exports.getCategoryChannels = async (req, res) => {
+export const getCategoryChannels = async (req, res) => {
   try {
     const { categoryUri } = req.query;
-
-    console.log("categoryUri:", categoryUri);
 
     if (!categoryUri) {
       return res.status(400).send('Category URI is required');
@@ -30,6 +31,6 @@ exports.getCategoryChannels = async (req, res) => {
     res.json(data?.channels);
   } catch (error) {
     console.log("Error:", error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send(error.message || 'Internal Server Error');
   }
 };

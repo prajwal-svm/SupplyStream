@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const homeController = require('../controllers/homeController');
+import { getCategories, getCategoryChannels } from '../controllers/homeController.js';
 
-router.get('/', homeController.getCategories);
-router.get('/api/category-channels', homeController.getCategoryChannels);
+router.get('/', getCategories);
+router.get('/api/category-channels', getCategoryChannels);
 
-module.exports = router;
+export default router;

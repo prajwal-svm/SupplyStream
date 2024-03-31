@@ -1,54 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<div
+    class="bg-[#121212] text-white p-4 rounded-lg w-[260px] h-auto my-10 flex items-center justify-center mx-auto relative overflow-hidden border-gradient">
+    <a class="flex flex-row items-center justify-center" href="/">
+        <img src="/images/icons8-stream-96.png" alt="SupplyStream Logo" class="w-12 h-12 mr-2 mt-1">
+        <h1 class="text-2xl font-bold">SupplyStream</h1>
+    </a>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SupplyStream</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+<style>
+    .border-gradient {
+        border: 4px solid;
+        border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ff11, #ff0073, #ffc800) 1;
+        border-radius: 20px;
+        animation: gradient-animation 3s ease-in-out infinite;
+    }
 
-<body class="bg-black text-white">
-    <div class="flex items-center justify-center min-h-screen">
-        <div class="bg-[#121212] p-8 rounded-lg shadow-md w-full max-w-md">
-            <div class="bg-[#121212] text-white p-4 rounded-lg mr-4 h-auto mb-4">
-                <div class="flex flex-row items-center justify-center" href="/">
-                    <img src="<%= baseUrl %>/images/icons8-stream-96.png" alt="SupplyStream Logo"
-                        class="w-12 h-12 mr-2 mt-1">
-                    <h1 class="text-2xl font-bold">SupplyStream</h1>
-                </div>
-            </div>
-            <hr class="my-4 border-1 border-[#1f1f1f]">
-            <h2 class="text-2xl font-bold mb-6 text-center text-gray-50">Login</h2>
-            <form action="/login" method="POST">
-                <div class="mb-4">
-                    <label for="email" class="block mb-2 font-bold text-gray-50">Email</label>
-                    <input type="email" id="email" name="email"
-                        class="w-full px-3 py-2 text-white bg-[#1f1f1f] rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        required>
-                </div>
-                <div class="mb-6">
-                    <label for="password" class="block mb-2 font-bold text-gray-50">Password</label>
-                    <input type="password" id="password" name="password"
-                        class="w-full px-3 py-2 text-white bg-[#1f1f1f] rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        required>
-                </div>
-                <div class="flex items-center justify-between">
-                    <a class="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800" href="#">
-                        Forgot Password?
-                    </a>
-                    <button type="submit"
-                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Sign In
-                    </button>
-                </div>
-            </form>
-            <p class="mt-8 text-center text-gray-50">
-                Don't have an account?
-                <a class="font-bold text-blue-600 hover:text-blue-800" href="/signup">Sign Up</a>
-            </p>
-        </div>
-    </div>
-</body>
+    @keyframes gradient-animation {
+        0% {
+            border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff) 1;
+        }
 
-</html>
+        50% {
+            border-image: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff) 1;
+        }
+
+        100% {
+            border-image: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff) 1;
+        }
+    }
+</style>
+
+<div id="app" class="flex items-start justify-center h-screen"></div>
+
+<script>
+    window.addEventListener("load", async function () {
+        await Clerk.load();
+
+        if (Clerk.user) {
+            document.getElementById("app").innerHTML = `
+                <div id="user-button"></div>
+            `;
+
+            const userButtonDiv = document.getElementById("user-button");
+
+            Clerk.mountUserButton(userButtonDiv);
+        } else {
+            document.getElementById("app").innerHTML = `
+                    <div id="sign-in"></div>
+                `;
+
+            const signInDiv = document.getElementById("sign-in");
+
+            Clerk.mountSignIn(signInDiv);
+        }
+    });
+</script>

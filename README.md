@@ -10,7 +10,7 @@ SupplyStream is a simple platform that allows users to consume, upload, import, 
 
 [Live Demo](https://supplystream.prajwalsv.dev)
 
-This project was developed as part of the Full Stack Engineering Internship Challenge 2024 at Supplyframe. The challenge required building a multiple-page web app that displays information pulled from a free API. I chose to use the Vimeo API to fetch video data and display it on the platform.
+This project was developed as part of the Full Stack Engineering Internship Challenge 2024 for Supplyframe. The challenge required building a multiple-page web app that displays information pulled from a free API. I chose to use the Vimeo API to fetch video data and display it on the platform.
 
 The specific requirements for the challenge were as follows:
 

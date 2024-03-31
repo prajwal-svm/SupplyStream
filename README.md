@@ -81,9 +81,12 @@ To run the SupplyStream application locally, follow these steps:
    - Add the following variables to the `.env` file:
      ```
      PORT=3000
-     VIMEO_ACCESS_TOKEN=your-vimeo-access-token
+     VIMEO_ACCESS_TOKEN=
+     VIMEO_CLIENT_ID=
+     VIMEO_ACCESS_TOKEN=
+     VIMEO_CLIENT_SECRET=
      ```
-   - Replace `your-vimeo-access-token` with your actual Vimeo API access token.
+   - Assign each with your actual Vimeo API tokens.
 
 5. Build the Tailwind CSS:
    ```

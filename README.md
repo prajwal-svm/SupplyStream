@@ -1,10 +1,14 @@
 # SupplyStream
 
-<img src="/images/logo" />
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/f2f2d4d5-8e2d-4240-9708-ee2721e37980)
 
-SupplyStream is a platform that allows users to consume, upload, import, create and record media content. Powered by Vimeo API.
+SupplyStream is a simple platform that allows users to consume, upload, import, create and record media content. Powered by Vimeo API.
 
-## Projects Notes
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/a3f0518c-3d4b-4888-b21e-07a169ad007e)
+
+## Overview
+
+[Live Demo](https://supplystream.prajwalsv.dev)
 
 This project was developed as part of the Full Stack Engineering Internship Challenge 2024 at Supplyframe. The challenge required building a multiple-page web app that displays information pulled from a free API. I chose to use the Vimeo API to fetch video data and display it on the platform.
 
@@ -17,6 +21,30 @@ The specific requirements for the challenge were as follows:
 - [x] Implement Git version control and push the repository to GitHub.
 - [x] Write at least one Jest test.
 
+## Tech Stack
+
+- Backend:
+  - Node.js
+  - Express
+  - EJS
+  - Cookie Parser
+  - Body Parser
+  - Clerk SDK
+  - Vimeo API
+
+- Frontend:
+  - Tailwind CSS
+  - PostCSS
+  - Autoprefixer
+
+- Testing:
+  - Jest
+  - Supertest
+
+- Development Tools:
+  - Babel
+  - Nodemon
+  - dotenv
 
 ## Features
 
@@ -214,3 +242,37 @@ Here's the complete directory structure:
 |____.env
 
 ```
+
+## Screenshots
+
+#### Login using Clerk
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/9b0f19f8-fb1f-4ffc-ad19-c7b599c775d9)
+
+#### Signup using Clerk
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/2b3e46ba-3b46-4cf9-9bfa-1d7148adc200)
+
+#### Home Page
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/65dd07f9-47c0-4563-a330-e968e92c9608)
+
+### Channels Page
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/edc35375-2893-451a-aa4f-97367e38b78a)
+
+### Search Results
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/67cef839-6f40-4ed6-b75a-d2e66223d99b)
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/a3f0518c-3d4b-4888-b21e-07a169ad007e)
+
+## Studio Page
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/8c5384b1-70ca-4539-911e-df9b3329af7e)
+
+## Data and Privacy Policies 
+
+![image](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/53ae021a-0e84-48af-b29f-4c08e55619e1)
+
+
+

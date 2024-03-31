@@ -97,7 +97,7 @@ To run the SupplyStream application locally, follow these steps:
    npm start
    ```
 
-7. Open your browser and visit `http://localhost:3000` to access the SupplyStream application.
+7. Open any browser and visit `http://localhost:3000` to access the SupplyStream application.
 
 ## Running Tests
 
@@ -106,7 +106,8 @@ To run the tests for the SupplyStream application, use the following command:
 npm test
 ```
 
-This will execute the test suite and display the test results in the console.
+![tests](https://github.com/Prajwal-S-Venkatesh/SupplyStream/assets/53730619/d7ae4355-3777-40b8-b280-38b88e1c1db7)
+
 
 ## Configuration
 
